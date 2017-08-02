@@ -5,3 +5,4 @@
 #
 
 include_recipe 'cop_selenium::dependencies'
+include_recipe 'cop_selenium::install'
