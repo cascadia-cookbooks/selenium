@@ -12,4 +12,10 @@ describe 'selenium::default' do
         it { should be_installed }
     end
 
+    describe file('/opt/selenium-server-standalone.jar') do
+        it { should exist }
+        it { should be_owned_by 'root' }
+        it { should be_grouped_into 'root' }
+        it { should be_mode '755' }
+    end
 end
