@@ -5,9 +5,16 @@
 #
 
 # Install OpenJDK
-pkg = value_for_platform_family(
-    rhel: 'java-1.8.0-openjdk',
-    debian: 'openjdk-8-jre'
-)
+case node['platform_family']
+when 'rhel'
+    pkg = 'java-1.8.0-openjdk'
+when 'debian'
+    case node['lsb']['codename']
+    when 'jessie', 'trusty'
+        pkg = 'openjdk-7-jre'
+    when 'stretch', 'xenial'
+        pkg = 'openjdk-8-jre'
+    end
+end
 
 package pkg
